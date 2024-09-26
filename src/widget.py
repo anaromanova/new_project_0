@@ -1,5 +1,7 @@
-from masks import get_mask_account, get_mask_card_number
 from datetime import datetime
+
+from src.masks import get_mask_account, get_mask_card_number
+
 
 def mask_account_card(type_and_number_or_account: str) -> str:
     """Функция, которая обрабатывает информацию как о картах, так и о счетах."""
@@ -10,4 +12,7 @@ def mask_account_card(type_and_number_or_account: str) -> str:
 
 
 def get_date(str_date: str) -> str:
+    """Функция, которая  принимает на вход строку с датой в формате
+        "2024-03-11T02:26:18.671407" и возвращает строку с датой в формате
+        "ДД.ММ.ГГГГ"("11.03.2024")."""
     return datetime.strptime(str_date, '%Y-%m-%dT%H:%M:%S.%f').strftime("%d.%m.%Y")
