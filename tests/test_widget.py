@@ -20,11 +20,10 @@ def test_mask_account_card(numbers, empty_lsts, lsts):
 
     assert mask_account_card(empty_lsts) == ""
 
-    with pytest.raises(TypeError) as exc_info:
-        mask_account_card(numbers)
+    assert mask_account_card(lsts) == ""
 
     with pytest.raises(TypeError) as exc_info:
-        mask_account_card(lsts)
+        mask_account_card(numbers)
 
 
 def test_get_date(numbers, empty_lsts, lsts):
@@ -34,10 +33,10 @@ def test_get_date(numbers, empty_lsts, lsts):
 
     assert get_date("") == ""
 
+    assert get_date(lsts) == ""
+
     with pytest.raises(TypeError) as exc_info:
         get_date(numbers)
 
-    with pytest.raises(TypeError) as exc_info:
-        get_date(lsts)
 
 
