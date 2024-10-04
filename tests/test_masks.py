@@ -10,6 +10,7 @@ from src.masks import get_mask_account, get_mask_card_number
                                          ("", "")
                                          ])
 def test_get_mask_card_number(x: str, expected: str, numbers: str, empty_lsts: str, lsts: str) -> None:
+    """Функция тестирует get_mask_account from src.masks"""
     assert get_mask_card_number(x) == expected
 
     assert get_mask_card_number(empty_lsts) == ""
@@ -27,6 +28,7 @@ def test_get_mask_card_number(x: str, expected: str, numbers: str, empty_lsts: s
                                          ("", "")
                                          ])
 def test_get_mask_account(x: str, expected: str, numbers: str, empty_lsts: str, lsts: str) -> None:
+    """Функция тестирует get_mask_account from src.masks"""
     assert get_mask_account(x) == expected
 
     assert get_mask_account(empty_lsts) == ""

@@ -12,6 +12,7 @@ from src.widget import get_date, mask_account_card
                                          ("", "")
                                          ])
 def test_mask_account_card(x: str, expected: str, numbers: str, empty_lsts: str, lsts: str) -> None:
+    """Функция тестирует mask_account_card from src.widget."""
     assert mask_account_card(x) == expected
 
     assert mask_account_card(empty_lsts) == ""
@@ -26,6 +27,7 @@ def test_mask_account_card(x: str, expected: str, numbers: str, empty_lsts: str,
                                          ("", ""),
                                          ])
 def test_get_date(x: str, expected: str, numbers: str, empty_lsts: str, lsts: str) -> None:
+    """Функция тестирует get_date from src.widget."""
     assert get_date(x) == expected
 
     assert get_date(empty_lsts) == ""

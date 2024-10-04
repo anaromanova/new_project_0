@@ -3,20 +3,25 @@ import pytest
 
 @pytest.fixture
 def numbers() -> int:
+    """Функция выдает int"""
     return 7000792289606361
 
 
 @pytest.fixture
 def empty_lsts() -> list:
+    """Функция выдает пустой список"""
     return []
 
 
 @pytest.fixture
 def lsts() -> list:
+    """Функция выдает список c int"""
     return [7000792289606361]
 
+
 @pytest.fixture
-def lst_for_generator()-> list:
+def lst_for_generator() -> list:
+    """Функция выдает список для тестов filter_by_currency, transaction_descriptions from src.generators"""
     return [
         {
             "id": 939719570,
