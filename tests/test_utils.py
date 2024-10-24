@@ -1,3 +1,4 @@
+import typing
 from unittest.mock import mock_open, patch
 
 from src.utils import amount_in_rub, external_api, reading_json_file
@@ -34,7 +35,7 @@ def test_file_not_found_reading_json_file(mock_file: str) -> None:
 
 
 @patch('requests.get')
-def test_external_api(mock_get: any) -> None:
+def test_external_api(mock_get: typing.Any) -> None:
     """Функция тестирует external_api from src.utils"""
     mock_get.return_value.json.return_value = {'success': True,
                                                'query': {'from': 'USD', 'to': 'RUB', 'amount': 456},
