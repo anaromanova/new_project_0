@@ -13,7 +13,7 @@ logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
 
 
-def reading_json_file(path: str) -> list:
+def reading_json_file(path: str) -> list[dict]:
     """Функция, которая принимает на вход путь до JSON-файла
     и возвращает список словарей с данными о финансовых транзакциях"""
     try:

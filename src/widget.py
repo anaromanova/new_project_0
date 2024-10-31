@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from src.masks import get_mask_account, get_mask_card_number
+from masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(type_and_number_or_account: str) -> str:
@@ -21,4 +21,8 @@ def get_date(str_date: str) -> str:
     if len(str_date) == 0 or not isinstance(str_date, str):
         return ""
     else:
-        return datetime.strptime(str_date, '%Y-%m-%dT%H:%M:%S.%f').strftime("%d.%m.%Y")
+        try:
+            return datetime.strptime(str_date, '%Y-%m-%dT%H:%M:%SZ').strftime("%d.%m.%Y")
+        except ValueError:
+            return datetime.strptime(str_date, '%Y-%m-%dT%H:%M:%S.%f').strftime("%d.%m.%Y")
+
