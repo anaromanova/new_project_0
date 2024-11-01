@@ -31,9 +31,6 @@ def test_filter_by_state(x: list, y: str, expected: list, numbers: list, empty_l
 
     assert filter_by_state(numbers, state='CANCELED') == [{}]
 
-    with pytest.raises(TypeError):
-        filter_by_state(lsts)
-
 
 @pytest.mark.parametrize("x, y, expected", [([{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
                                               {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},

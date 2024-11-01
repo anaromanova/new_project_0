@@ -1,8 +1,8 @@
-from utils import reading_json_file
-from utils_csv_xlsx import reading_csv_file, reading_xlsx_file
-from processing import filter_by_state, sort_by_date
-from search import rub_operations_from_json, search_operations, rub_operations_from_xlsx_csv
-from widget import get_date, mask_account_card
+from src.utils import reading_json_file
+from src.utils_csv_xlsx import reading_csv_file, reading_xlsx_file
+from src.processing import filter_by_state, sort_by_date
+from src.search import rub_operations_from_json, search_operations, rub_operations_from_xlsx_csv
+from src.widget import get_date, mask_account_card
 
 
 def main():
@@ -69,15 +69,18 @@ def main():
         lst = search_operations(lst, word_answer)
 
     print('Программа: Распечатываю итоговый список транзакций...')
-    print(f'Программа: Всего банковских операций в выборке: {len(lst)}')
-    for i in lst:
-        print(f'{get_date(i['date'])} {i['description']}')
-        if i['description'] == 'Открытие вклада':
-            print(mask_account_card(i['to']))
-        else:
-            print(f'{mask_account_card(i['from'])} -> {mask_account_card(i['to'])}')
-        try:
-            print(f'Сумма: {i['amount']} {i['currency_code']}')
-        except KeyError:
-            print(f'Сумма: {i['operationAmount']['amount']} {i['operationAmount']['currency']['code']}')
-        print('')
+    if len(lst) == 0:
+        print('Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации')
+    else:
+        print(f'Программа: Всего банковских операций в выборке: {len(lst)}')
+        for i in lst:
+            print(f'{get_date(i['date'])} {i['description']}')
+            if i['description'] == 'Открытие вклада':
+                print(mask_account_card(i['to']))
+            else:
+                print(f'{mask_account_card(i['from'])} -> {mask_account_card(i['to'])}')
+            try:
+                print(f'Сумма: {i['amount']} {i['currency_code']}')
+            except KeyError:
+                print(f'Сумма: {i['operationAmount']['amount']} {i['operationAmount']['currency']['code']}')
+            print('')

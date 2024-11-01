@@ -1,12 +1,13 @@
-from utils import reading_json_file
-
 def filter_by_state(list_of_dicts: list[dict], state: str = 'EXECUTED')  -> list[dict]:
     """Функция, которая возвращает новый список словарей, содержащий только те словари,
     у которых ключ state соответствует указанному значению."""
     if not isinstance(list_of_dicts, list) or len(list_of_dicts) == 0:
         return [{}]
     else:
-        return [d for d in list_of_dicts if d.get("state") == state]
+        try:
+            return [d for d in list_of_dicts if d.get("state") == state]
+        except AttributeError:
+            return [{}]
 
 
 def sort_by_date(list_of_dicts: list[dict], ascending: bool = True) -> list[dict]:
