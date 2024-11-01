@@ -3,9 +3,9 @@ import pytest
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
-def test_filter_by_currency(lst_for_generator: list, empty_lsts: list) -> None:
+def test_filter_by_currency(lst_for_tests: list, empty_lsts: list) -> None:
     """Функция тестирует filter_by_currency from src.generators"""
-    usd_transactions_with_currency = filter_by_currency(lst_for_generator, 'USD')
+    usd_transactions_with_currency = filter_by_currency(lst_for_tests, 'USD')
     assert next(usd_transactions_with_currency) == {
                                         "id": 939719570,
                                         "state": "EXECUTED",
@@ -39,11 +39,11 @@ def test_filter_by_currency(lst_for_generator: list, empty_lsts: list) -> None:
                                     }
 
     with pytest.raises(StopIteration):
-        usd_transactions_wo_currency = filter_by_currency(lst_for_generator, '')
+        usd_transactions_wo_currency = filter_by_currency(lst_for_tests, '')
         assert next(usd_transactions_wo_currency)
 
     with pytest.raises(StopIteration):
-        usd_transactions_wo_currency = filter_by_currency(lst_for_generator, 'EUR')
+        usd_transactions_wo_currency = filter_by_currency(lst_for_tests, 'EUR')
         assert next(usd_transactions_wo_currency)
 
     with pytest.raises(StopIteration):
@@ -51,9 +51,9 @@ def test_filter_by_currency(lst_for_generator: list, empty_lsts: list) -> None:
         assert next(usd_transactions_empty_lst)
 
 
-def test_transaction_descriptions(lst_for_generator: list, empty_lsts: list) -> None:
+def test_transaction_descriptions(lst_for_tests: list, empty_lsts: list) -> None:
     """Функция тестирует transaction_descriptions from src.generators"""
-    descriptions = transaction_descriptions(lst_for_generator)
+    descriptions = transaction_descriptions(lst_for_tests)
     assert next(descriptions) == "Перевод организации"
 
     assert next(descriptions) == "Перевод со счета на счет"

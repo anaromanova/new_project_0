@@ -39,10 +39,6 @@ def test_main_search_answer(monkeypatch):
 
 
 def test_main():
-    main.file_answer = Mock(return_value='1')
-    main.status_answer = Mock(return_value="EXECUTED")
-    main.ascending_answer = Mock(return_value="Да")
-    main.rub_or_not_answer = Mock(return_value="Да")
-    main.search_answer = Mock(return_value="Да")
+
     output = main()
     assert output == []
