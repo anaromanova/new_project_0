@@ -1,5 +1,3 @@
-import pytest
-
 from src.search import search_operations, count_of_descriptions, rub_operations_from_xlsx_csv, rub_operations_from_json
 
 

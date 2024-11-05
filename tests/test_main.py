@@ -1,44 +1,46 @@
-from unittest.mock import Mock
+from unittest.mock import patch
 
-from main import main
-
-
-def test_main_file_answer(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: "1")
-    i = input('''Программа: Привет! Добро пожаловать в программу работы с банковскими транзакциями.
-                Выберите необходимый пункт меню:
-                1. Получить информацию о транзакциях из JSON-файла
-                2. Получить информацию о транзакциях из CSV-файла
-                3. Получить информацию о транзакциях из XLSX-файла?''')
-    assert i == "1"
+from main import  file_type_option, sort_by_date_option, status_type_option, filter_rub_option, filter_word_option
 
 
-def test_main_status_answer(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: "EXECUTED")
-    i = input('''Программа: Введите статус, по которому необходимо выполнить фильтрацию. 
-                Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING''')
-    assert i == "EXECUTED"
+@patch("main.reading_csv_file")
+@patch("main.input")
+def test_file_type_option(mocked_input, mock_reading_csv_file, lst_for_tests_csv_xlsx: list) -> None:
+    mocked_input.return_value = '2'
+    mock_reading_csv_file.return_value = lst_for_tests_csv_xlsx
+    assert file_type_option() == (lst_for_tests_csv_xlsx, '2')
 
 
-def test_main_ascending_answer(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: "Да")
-    i = input('''Программа: Отсортировать операции по дате? Да/Нет''')
-    assert i == "Да"
+@patch("main.input")
+def test_status_type_option(mock_input, lst_for_tests_csv_xlsx: list) -> None:
+    mock_input.return_value = "EXECUTED"
+    assert status_type_option(lst_for_tests_csv_xlsx) == lst_for_tests_csv_xlsx
 
 
-def test_main_rub_or_not_answer(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: "Да")
-    i = input('''Программа: Выводить только рублевые тразакции? Да/Нет''')
-    assert i == "Да"
+@patch("main.input")
+def test_sort_by_date_option(mock_input, lst_for_tests_csv_xlsx: list) -> None:
+    mock_input.return_value = "да"
+    assert sort_by_date_option(lst_for_tests_csv_xlsx) == lst_for_tests_csv_xlsx
 
 
-def test_main_search_answer(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: "Да")
-    i = input('''Программа: Отфильтровать список транзакций по определенному слову в описании? Да/Нет''')
-    assert i == "Да"
+@patch("main.input")
+def test_filter_rub_option(mock_input, lst_for_tests_csv_xlsx: list) -> None:
+    mock_input.return_value = "да"
+    assert filter_rub_option(lst_for_tests_csv_xlsx, '2') == [
+        { "id": 142264268,
+            "state": "EXECUTED",
+            "date": "2019-04-04T23:20:05.206878",
+            "amount": "79114.93",
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+            "description": "Перевод со счета на счет"
+        }
+            ]
 
 
-def test_main():
-
-    output = main()
-    assert output == []
+@patch("main.input")
+def test_filter_word_option(mock_input, lst_for_tests_csv_xlsx: list) -> None:
+    mock_input.return_value = "со счета на счет"
+    assert filter_word_option(lst_for_tests_csv_xlsx) == lst_for_tests_csv_xlsx
