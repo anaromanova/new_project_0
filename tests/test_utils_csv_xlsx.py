@@ -9,6 +9,7 @@ from src.utils_csv_xlsx import reading_csv_file, reading_xlsx_file
 #     transactions = reading_csv_file("data/operations.csv")
 #     assert transactions == ['650703;EXECUTED;2023-09-05T11:30:32Z;16210;Sol;PEN;Счет 58803664561298323391;Счет 39745660563456619397;Перевод организации']
 
+
 @patch("builtins.open", new_callable=mock_open, read_data='{"amount": 100}')
 def test_not_a_list_reading_csv_file(mock_file: str) -> None:
     """Функция тестирует reading_csv_file from src.utils_csv_xlsx на некорректные данные (например, не список)"""

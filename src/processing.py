@@ -1,4 +1,4 @@
-def filter_by_state(list_of_dicts: list[dict], state: str = 'EXECUTED')  -> list[dict]:
+def filter_by_state(list_of_dicts: list[dict], state: str = 'EXECUTED') -> list[dict]:
     """Функция, которая возвращает новый список словарей, содержащий только те словари,
     у которых ключ state соответствует указанному значению."""
     if not isinstance(list_of_dicts, list) or len(list_of_dicts) == 0:

@@ -1,4 +1,4 @@
-from src.search import search_operations, count_of_descriptions, rub_operations_from_xlsx_csv, rub_operations_from_json
+from src.search import count_of_descriptions, rub_operations_from_json, rub_operations_from_xlsx_csv, search_operations
 
 
 def test_search_operations_with_word(lst_for_tests: list) -> None:
@@ -107,16 +107,17 @@ def test_rub_operations_from_json_empty_lst(empty_lsts: list) -> None:
 
 def test_rub_operations_from_xlsx_csv(lst_for_tests_csv_xlsx: list) -> None:
     transaction_count = rub_operations_from_xlsx_csv(lst_for_tests_csv_xlsx)
-    assert transaction_count == [{ "id": 142264268,
-            "state": "EXECUTED",
-            "date": "2019-04-04T23:20:05.206878",
-            "amount": "79114.93",
-            "currency_name": "Ruble",
-            "currency_code": "RUB",
-            "from": "Счет 19708645243227258542",
-            "to": "Счет 75651667383060284188",
-            "description": "Перевод со счета на счет"
-        }]
+    assert transaction_count == [
+                                   {"id": 142264268,
+                                    "state": "EXECUTED",
+                                    "date": "2019-04-04T23:20:05.206878",
+                                    "amount": "79114.93",
+                                    "currency_name": "Ruble",
+                                    "currency_code": "RUB",
+                                    "from": "Счет 19708645243227258542",
+                                    "to": "Счет 75651667383060284188",
+                                    "description": "Перевод со счета на счет"}
+                                ]
 
 
 def test_rub_operations_from_xlsx_csv_empty_lst(empty_lsts: list) -> None:

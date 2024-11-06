@@ -99,7 +99,7 @@ def printing_results(lst: list) -> None:
             print('')
 
 
-def main():
+def main() -> None:
     """Функция, которая отвечает за основную логику проекта
         и связывает функциональности между собой."""
     lst, file_answer = file_type_option()

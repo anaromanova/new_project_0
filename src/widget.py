@@ -25,4 +25,3 @@ def get_date(str_date: str) -> str:
             return datetime.strptime(str_date, '%Y-%m-%dT%H:%M:%SZ').strftime("%d.%m.%Y")
         except ValueError:
             return datetime.strptime(str_date, '%Y-%m-%dT%H:%M:%S.%f').strftime("%d.%m.%Y")
-
